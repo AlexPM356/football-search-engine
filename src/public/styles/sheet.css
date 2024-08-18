@@ -1,0 +1,179 @@
+body {
+  font-family: system-ui;
+  background: #2f2f2f;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+              Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+a:link { 
+  text-decoration: none;
+}
+.navbar {
+  display: grid;
+  place-content: center;
+}
+
+.title-content {
+  color: #FB667A;
+  text-align: center;
+}
+
+/* ================================================================================== */
+/* HEADER */
+.header {
+  text-align: center;
+  color: #00f55e;
+
+  & a {color: #00f55e;}
+}
+.header h1 a:hover {
+  color: #006627;
+}
+
+/* ================================================================================== */
+/* AUTOCOMPLETE */
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+input {
+  padding: 5px;
+  border: 2px solid black;
+  border-radius: 10px;
+  font-size: xx-large;
+}
+input[type=search] {
+  background-color: #f1f1f1;
+  width: 100%;
+}
+input[type=submit] {
+  background-color: DodgerBlue;
+  color: #fff;
+}
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4;
+}
+.autocomplete-items div:hover {
+  background-color: #e9e9e9;
+}
+.autocomplete-active {
+  background-color: DodgerBlue !important;
+  color: #ffffff;
+}
+button {
+  font-weight: bold;
+  padding: 5px;
+  border: 2px solid black;
+  border-radius: 15px;
+  font-size: xx-large;
+}
+button:hover {
+  background: black;
+  color: white;
+  box-shadow: 0 0 10px #111;
+}
+
+/* ================================================================================== */
+/* LIST */
+.list {
+  display: grid;
+  place-content: center;
+}
+.list a:visited {
+  color: #007ff5;
+}
+.list ul li {
+  position: relative;
+  left: 0;
+  list-style: none;
+  margin: 4px 0;
+  border-left: 2px solid #007ff5;
+  transition: 0.5s;
+}
+.list ul li:hover {
+  left: 10px;
+}
+.list ul li span {
+  position: relative;
+  padding: 8px;
+  padding-left: 12px;
+  display: inline-block;
+  z-index: 1;
+  transition: 0.5s;
+}
+.list ul li:hover span {
+  color: #111;
+}
+.list ul li:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #007ff5;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: 0.5s;
+}
+.list ul li:hover:before {
+  transform: scaleX(1);
+}
+
+/* ================================================================================== */
+/* TABLE */
+.container {
+  color: #00f5bc;
+  width: 80vw;
+  margin: 0 auto;
+  display: table;
+  padding: 0 0 8em 0;
+}
+.container a {
+  color: #00f5bc;
+  font-weight: bold;
+}
+.container a:visited {
+  color: #00f5bc;
+}
+.container th {
+  text-align: center;
+}
+.container th h2 {
+  font-weight: bold;
+  color: #4bb5e6;
+}
+.container td, .container th {
+  padding: 2%; 
+}
+.container th {
+  background-color: #1F2739;
+  width: 100px;
+  height: 50px;
+}
+.container td {
+  background-color: #323C50;
+  width: 100px;
+  font-size: x-large;
+  text-align: center;
+}
+
+/* ================================================================================== */
+/* FOOTBALL LAYER */
+.fb_layer {
+  display: grid;
+  position: relative;
+  background: rgb(16, 176, 1);
+  width: 75vw;
+  height: 50vh;
+}

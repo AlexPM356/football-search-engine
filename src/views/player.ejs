@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/sheet.css">
+    <title><%= playerName %></title>
+</head>
+<body>
+  <header class="header">
+    <h1><a href="/">HOME</a></h1>
+  </header>
+  <!--===============================================================================-->
+  <div class="mc-players">
+    <h1 class="title-content"><%= playerName %></h1>
+      <table class="container">
+          <thead>
+            <tr>
+              <th>POSITION</th>
+              <th>CAPS</th>
+              <th>GOALS</th>
+              <th>COUNTRY</th>
+              <th>BIRTHDATE</th>
+          </tr>
+          </thead>
+          <tbody>
+            <% for (let i = 0; i < player.length; i++) { %>
+              <tr>
+                  <td><%= player[i].player_position %></td>
+                  <td><%= player[i].caps %></td>
+                  <td><%= player[i].goals %></td>
+                  <td><%= player[i].country %></td>
+                  <td><%= player[i].birthdate %></td>
+              </tr>
+              <% } %>
+          </tbody>
+      </table>
+  </div>
+</body>
+</html>

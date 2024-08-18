@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/sheet.css">
+    <title><%= country %> <%= countryYear %></title>
+</head>
+<body>
+  <header class="header">
+    <h1><a href="/">HOME</a></h1>
+  </header>
+  <!--===============================================================================-->
+  <div class="mc-wc-country">
+    <h1 class="title-content"><%= country %> <%= countryYear %></h1>
+      <table class="container">
+          <thead>
+            <tr>
+              <th><h2>PLAYER</h2></th>
+              <th><h2>SHIRT NUMBER</h2></th>
+              <th><h2>POSITION</h2></th>
+          </tr>
+          </thead>
+          <% for (let i = 0; i < players.length; i++) { %>
+          <tbody>
+            <tr>
+              <td><a href="/api/<%= players[i].player_name %>">
+                  <%= players[i].player_name %></a></td>
+              <td><%= players[i].shirt_number %></td>
+              <td><%= players[i].player_position %></td>
+            </tr>
+            <% } %>
+          </tbody>
+      </table>
+  </div>
+  <section class="fb_layer">
+  </section>
+</body>
+</html>

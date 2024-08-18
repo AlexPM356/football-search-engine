@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/sheet.css">
+    <title>World Cup <%= year %></title>
+</head>
+<body>
+  <header class="header">
+    <h1><a href="/">HOME</a></h1>
+  </header>
+  <!--===============================================================================-->
+  <div class="list">
+    <h1 class="title-content">World Cup <%= year %></h1>
+    <ul style="column-count: 4">
+      <% for (let i = 0; i < countries.length; i++) { %>
+      <li style="font-size: 1cm;"><a href="/api/world_cup/<%= year %>/<%= countries[i].country %>">
+        <span><%= countries[i].country %></span>
+      </a></li>
+      <% } %>
+    </ul>
+  </div>
+</body>
+</html>

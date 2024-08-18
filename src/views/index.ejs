@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/sheet.css">
+    <title>Football</title>
+</head>
+<body>
+  <header class="header">
+    <h1><a href="/">HOME</a></h1>
+    <!-- SEARCH BAR -->
+    <form autocomplete="off" action="/redirect" method="post">
+      <div class="autocomplete">
+        <input id="auto-input" type="search" name="player" placeholder="Search Players">
+      </div>
+      <button id="button" type="submit">SEARCH</button>
+    </form>
+  </header>
+  <!--===============================================================================-->
+  <section class="list">
+    <h2 class="title-content">WORLD CUP<h2/>
+        <ul style="column-count: 6;">
+          <% for (let i = 0; i < years.length; i++) { %>
+          <li style="font-size: 1.6cm;">
+            <a href="/api/world_cup/<%= years[i] %>">
+              <span><%= years[i] %></span>
+            </a>
+          </li>
+          <% } %>
+        </ul>
+  </section>
+  <!--===============================================================================-->
+  <script>
+    function autocomplete(searchInput, itemsArray) {
+      let itemStringFocus;
+      searchInput.addEventListener("input", function(e) {
+        let parentContainer, itemsContainer, itemString = this.value;
+        closeList();
+
+        if (!itemString) { return false };
+        itemStringFocus = -1;
+        parentContainer = document.createElement("DIV");
+        parentContainer.setAttribute("id", this.id + "autocomplete-list");
+        parentContainer.setAttribute("class", "autocomplete-items");
+        this.parentNode.appendChild(parentContainer);
+
+        for (let i = 0; i < itemsArray.length; i++) {
+          if (itemsArray[i].substr(0, itemString.length).toUpperCase() === itemString.toUpperCase()) {
+            itemsContainer = document.createElement("DIV");
+            itemsContainer.innerHTML = "<strong>" + itemsArray[i].substr(0, itemString.length) + "</strong>";
+            itemsContainer.innerHTML += itemsArray[i].substr(itemString.length);
+            itemsContainer.innerHTML += "<input type='hidden' value='" + itemsArray[i] + "'>";
+            
+            itemsContainer.addEventListener("click", function(e) {
+              searchInput.value = this.getElementsByTagName("input")[0].value;
+              closeList();
+            });
+            parentContainer.appendChild(itemsContainer);
+          }
+        }
+    });
+    
+      searchInput.addEventListener("keydown", function(inputObject) {
+        let autocompleteID = document.getElementById(this.id + "autocomplete-list");
+        if (autocompleteID) autocompleteID = autocompleteID.getElementsByTagName("div");
+        // KEYCODES => { 13: Enter, 38: ArrowUp, 40: ArrowDown }
+        if (inputObject.keyCode == 40) {
+          itemStringFocus++;
+          highlight(autocompleteID);
+        } else if (inputObject.keyCode === 38) {
+          itemStringFocus--;
+          highlight(autocompleteID);
+        } else if (inputObject.keyCode === 13) {
+          inputObject.preventDefault();
+          if (itemStringFocus > -1) {
+            if (autocompleteID) autocompleteID[itemStringFocus].click();
+          }
+        }
+      });
+      // HIGHLIGHT WHEN USER IS ON EACH ELEMENT OF THE LIST IN THE AUTOCOMPLETE
+      function highlight(highlightItem) {
+        if (!highlightItem) return false;
+        removeHighlight(highlightItem);
+        if (itemStringFocus >= highlightItem.length) itemStringFocus = 0;
+        if (itemStringFocus < 0) itemStringFocus = (x.length - 1);
+        highlightItem[itemStringFocus].classList.add("autocomplete-active");
+      }
+      function removeHighlight(highlightItem) {
+        for (let i = 0; i < highlightItem.length; i++) {
+          highlightItem[i].classList.remove("autocomplete-active");
+        };
+      }
+      function closeList(listItem) {
+        let autocomClass = document.getElementsByClassName("autocomplete-items");
+        for (let i = 0; i < autocomClass.length; i++) {
+          if (listItem != autocomClass[i] && listItem != searchInput) {
+            autocomClass[i].parentNode.removeChild(autocomClass[i]);
+          }
+        }
+      }
+    }
+    /* JAVASCRIPT TAKES THE <%= %> AS A STRING, SO WITH THE SPLIT METHOD
+    IT CREATES THE ARRAY USED IN THE autocomplete FUNCTION */
+    const playerString = `<%= players %>`;
+    const playerList = playerString.split(',');
+    autocomplete(document.getElementById('auto-input'), playerList);
+  </script>
+</body>
+</html>
